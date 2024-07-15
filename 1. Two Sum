@@ -1,0 +1,30 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        
+        /* BRUTE FORCE
+        TC-> O(N)
+         
+        for(int i=0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[i]+nums[j]==target){
+                    return new int[] { i, j };
+                }
+            }
+        }
+        return null;
+        */
+       
+        // OPTIMIZED SOL -> TC ->O(N)
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int diffVal = target - nums[i];
+            
+            if (map.containsKey(diffVal)) {
+                return new int[] { map.get(diffVal), i };
+            }
+            map.put(nums[i], i);  // add curr element and its index to the hashmap
+        }
+        return null;
+
+    }
+}
