@@ -1,0 +1,48 @@
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+
+       List<Integer> list=new ArrayList<>();
+        
+        int m=matrix.length;  //row
+        int n=matrix[0].length;  //col
+        
+        int dir=0;  //var -> 0->right,1->down,2->,3
+        int top=0,left=0,down=m-1,right=n-1;
+        
+        while(top<=down && left<=right){
+            if(dir==0){
+                for(int i=left;i<=right;i++){
+                list.add(matrix[top][i]);   // row remains same but the col changes
+                }
+                top+=1;
+            }
+            
+            else if(dir==1){
+                for(int i=top;i<=down;i++){
+                    list.add(matrix[i][right]);  //col same row changes
+                }
+                right-=1;
+            }
+            
+            else if(dir==2){
+                for(int i=right;i>=left;i--){
+                    list.add(matrix[down][i]);  // row same col changes
+                }
+                down-=1;
+            }
+            
+            else if(dir==3){
+                for(int i=down;i>=top;i--){
+                    list.add(matrix[i][left]);  //col same row changes
+                }
+                left+=1;
+            }
+            
+            dir=(dir+1)%4;
+            
+        }
+        
+        return list;
+
+    }
+}
