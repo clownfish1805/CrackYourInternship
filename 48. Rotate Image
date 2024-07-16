@@ -1,0 +1,38 @@
+class Solution {
+    public void rotate(int[][] matrix) {
+        /*  
+        BRUTE FORCE -> creates new matrix 
+        int n=matrix.length;
+        int[][] res=new int[n][n];
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                res[j][n-1-i]=matrix[i][j];
+            }
+        }
+        */
+        
+        //IN PLACE -> OPTIMAL SOL -> TC -> O(N*N) + O(N*N)
+        
+        //transpose
+        int n=matrix.length;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                int temp=matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=temp;
+            }
+        }
+        
+        //reverse
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n/2;j++){
+                int temp=0;
+                temp=matrix[i][j];
+                matrix[i][j]=matrix[i][n-1-j];
+                matrix[i][n-1-j]=temp;
+            }
+        }
+        
+    }
+}
