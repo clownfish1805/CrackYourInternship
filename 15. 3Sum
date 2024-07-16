@@ -1,0 +1,86 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        
+        
+        /*BRUTE FORCE -> TC -> O(n^3) -> Sorting the array O(nlogn), but the dominant term is N^3 
+        Time limit Exceeded error
+
+        List<List<Integer>> list=new ArrayList<>();
+        
+        int n=nums.length;
+        Arrays.sort(nums);  //to handle dupes
+
+        
+        for(int i=0;i<n-2;i++){
+             // Skip duplicates for the first element
+            if (i > 0 && nums[i] == nums[i - 1]){
+                continue;
+            }
+            
+            for(int j=i+1;j<n-1;j++){
+                // Skip duplicates for the second element
+                if (j > i + 1 && nums[j] == nums[j - 1]){
+                    continue;
+                } 
+                
+                for(int k=j+1;k<n;k++){
+                    
+                    // Skip duplicates for the third element
+                    if (k > j + 1 && nums[k] == nums[k - 1]){
+                        continue;
+                    }
+                    
+                    if(nums[i]+nums[j]+nums[k]==0 && !list.contains(nums[i]+nums[j]+nums[k])){
+                        list.add(Arrays.asList(nums[i],nums[j],nums[k]));
+                    }
+                }
+            }
+        }
+        return list;
+        */
+ 
+        
+        
+        
+       //OPTIMAL SOL -> TC -> O(N^2)
+       List<List<Integer>> list = new ArrayList<>();
+        int n=nums.length;
+        Arrays.sort(nums);
+        
+        for(int i=0;i<n-2;i++){
+            
+            // Skip dups for first element
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            
+            int left=i+1;
+            int right=n-1;
+            
+            while(left<right){
+                if(nums[i]+nums[left]+nums[right]==0 && i!=left && left!=right && right!=i){
+                    list.add(Arrays.asList(nums[i],nums[left],nums[right]));  //since it is nested list , have to add inputs like this
+                    
+                    while (left < right && nums[left] == nums[left + 1]) {  //remove dupes on left
+                        left++;
+                    }
+                   
+                    while (left < right && nums[right] == nums[right - 1]) {  //remove dupes on right
+                        right--;
+                     }
+                   
+                    left++;
+                    right--;
+                }
+                else if(nums[i]+nums[left]+nums[right]<0){
+                    left++;
+                }
+                else{
+                    right--;
+                }
+            }
+        }
+        
+        return list;
+    }
+}
