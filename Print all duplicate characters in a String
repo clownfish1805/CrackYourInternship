@@ -1,0 +1,36 @@
+public class Main{
+	 public static void printDuplicateCharacters(String str) {
+
+        /* BRUTE FORCE -> TC -> O(N^2)
+        int n = str.length();
+        Set<Character> duplicates = new HashSet<>();
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (str.charAt(i) == str.charAt(j)) {
+                    duplicates.add(str.charAt(i));
+                    break;
+                }
+            }
+        }
+        
+        for (char c : duplicates) {
+            System.out.print(c + " ");
+        }
+       */
+
+        //OPTIMAL SOL -> O(N)
+
+        Map<Character, Integer> charCountMap = new HashMap<>();
+        for (char c : str.toCharArray()) {
+            charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+        }
+        for (Map.Entry<Character, Integer> entry : charCountMap.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.print(entry.getKey() + " ");
+            }
+        }
+    }
+   
+
+}
