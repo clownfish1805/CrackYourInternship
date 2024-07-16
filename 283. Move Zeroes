@@ -1,0 +1,34 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        //SWAPPING -> TC -> O(N)
+
+        int n=nums.length;
+        int left=0;  
+        for(int i=0;i<n;i++){
+            if(nums[i]!=0){
+                int temp=nums[i];
+                nums[i]=nums[left];
+                nums[left]=temp;
+                left++;
+            }
+        }
+
+       /*
+        TC -> O(N)
+
+        int count=0;
+        int n=nums.length;
+        
+        for(int i=0;i<n;i++){  //add all the non zero elements 
+            if(nums[i]!=0){
+                nums[count]=nums[i];
+                count++;
+            }
+        }   
+        while(count<n){    //count value is stopped at index where 0 found
+            nums[count]=0; //fill remaining with 0
+            count++;
+        } 
+        */
+    }
+}
