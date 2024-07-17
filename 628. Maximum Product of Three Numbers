@@ -1,0 +1,33 @@
+class Solution {
+    public int maximumProduct(int[] nums) {
+        /*
+        BRUTE FORCE -> O(N^3)
+        
+        int n = nums.length;
+        int max = Integer.MIN_VALUE; //small value dont take 1
+        
+        for(int i = 0; i < n - 2; i++) {
+            for(int j = i + 1; j < n - 1; j++) {
+                for(int k = j + 1; k < n; k++) {
+                    
+                    int mul = nums[i] * nums[j] * nums[k];
+                    max = Math.max(mul, max);
+                }
+            }
+        }
+        return max;
+        */
+        
+        //OPTIMAL SOL
+        Arrays.sort(nums);
+        int n = nums.length;
+        
+        // max product of three largest num
+        int max1 = nums[n-1] * nums[n-2] * nums[n-3];
+        
+        // max product of two smallest numbers and 1 largest number
+        int max2 = nums[0] * nums[1] * nums[n-1];
+        
+        return Math.max(max1, max2);
+    }
+}
