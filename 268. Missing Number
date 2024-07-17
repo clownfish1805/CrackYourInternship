@@ -1,0 +1,35 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+        /* 
+        EXPECTED METHOD - 1 (SUMMING) 
+        
+        int sum = 0;
+
+        // Calculate the sum of array elements
+        int n=nums.length;
+        for (int i = 0; i < n ; i++) {
+            sum += nums[i];
+        }
+
+        // Calculate the expected sum
+        int expectedSum = n * (n + 1) / 2;
+
+        // Return the missing number
+        return expectedSum - sum;  */
+        
+        /*EXPEXTED METHOD 2 - XOR -> TC ->O(N)
+
+        a ^ a = 0 (XOR of a number with itself is zero)
+        a ^ 0 = a (XOR of a number with zero is the number itself)
+        */
+
+        int n=nums.length;  
+        int missing=n;
+        for(int i=0;i<n;i++){
+            missing^= i^nums[i];
+        }
+        return missing;
+        
+
+    }
+}
