@@ -1,0 +1,22 @@
+class Solution {
+    public int reverse(int x) {
+        int dig,rem=0;
+        while(x!=0){
+            
+            dig=x%10;
+            
+            //becoz we get error -> 153242364949
+            // check for overflow/underflow before multiplying by 10 and adding the digit
+            
+            if (rem > Integer.MAX_VALUE / 10 || (rem == Integer.MAX_VALUE / 10 && dig > 7)) 
+                return 0;
+            if (rem < Integer.MIN_VALUE / 10 || (rem == Integer.MIN_VALUE / 10 && dig < -8))
+                return 0;
+            
+            rem=rem*10+dig;
+            x/=10;
+        }
+      
+        return rem;
+    }
+}
