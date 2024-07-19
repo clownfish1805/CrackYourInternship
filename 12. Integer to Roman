@@ -1,0 +1,36 @@
+class Solution {
+    public String intToRoman(int num) {
+        /*
+        String ans=new String();
+        int[] val={1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] symb= {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        int i=0;
+        while(num>0 && i<13){
+            if(num >= val[i]){
+                ans=ans+symb[i];
+                num-=val[i];
+            }
+            else{
+                i++;
+            }
+        }
+        return ans;*/
+
+        // reduces complexities when SB is used instead of String
+        StringBuilder ans=new StringBuilder();
+        int[] val={1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] symb= {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        int i=0;
+        while(num>0 && i<13){
+            if(num>=val[i]){
+                ans.append(symb[i]);
+                num-=val[i];
+            }
+            else{
+                i++;
+            }
+        }
+
+        return ans.toString();
+    }
+}
