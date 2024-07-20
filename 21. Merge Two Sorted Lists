@@ -1,0 +1,38 @@
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+     ListNode mergedList=new ListNode(-1);
+
+    ListNode temp=mergedList;
+        
+    while(list1!=null && list2!=null){
+        if(list1.val <= list2.val) {
+            temp.next = list1;
+            // move the temp pointer to the next node in the merged list
+            temp = temp.next;
+           // move to the next node
+            list1 = list1.next;
+        } else {
+            temp.next = list2;
+            temp = temp.next;     
+            list2 = list2.next;
+            }
+        }
+        
+        // remaining elements in list1, append them
+    while(list1 != null) {
+            temp.next = list1;
+            temp = temp.next;
+            list1 = list1.next;
+        }
+
+        // remaining elements in list2, append them
+    while(list2 != null) {
+            temp.next = list2;
+            temp = temp.next;
+            list2 = list2.next;
+        }
+
+        
+    return mergedList.next;
+    }
+}
