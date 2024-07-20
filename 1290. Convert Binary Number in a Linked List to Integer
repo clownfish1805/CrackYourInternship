@@ -1,0 +1,24 @@
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        /*
+        ListNode curr = head;
+        String ans="";  
+        
+        while (curr != null) {
+           ans+=curr.val;
+           curr=curr.next;
+        }
+        int val=Integer.parseInt(ans, 2);
+        return val;
+        */
+
+        ListNode curr = head;
+        int ans=0;
+        while (curr != null) {
+           ans=(ans<<1)|curr.val;   //left shift and OR operation
+           curr=curr.next;
+        }
+        return ans;
+
+    }
+}
