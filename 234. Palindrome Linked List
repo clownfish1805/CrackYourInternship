@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        
+        ListNode current = head;  
+        boolean flag = true;  
+          
+        //Store the mid position of the list  
+        int mid = (size%2 == 0)? (size/2) : ((size+1)/2);  
+          
+        //Finds the middle node in given singly linked list  
+        for(int i=1; i<mid; i++){  
+            current = current.next;  
+        }  
+          
+        //Reverse the list after middle node to end  
+        ListNode revHead = reverseList(current.next);  
+   
+        //Compare nodes of first half and second half of list  
+        while(head != null && revHead != null){  
+            if(head.data != revHead.data){  
+                flag = false;  
+                break;  
+            }  
+            head = head.next;  
+            revHead = revHead.next;  
+        }  
+   
+        return flag? true: false; 
+    }  
+}
