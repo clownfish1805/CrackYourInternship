@@ -1,0 +1,16 @@
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        //gives null pointer exception since it takes next.next values so put crr.next ehich takes next.next val
+
+        ListNode curr=head;
+        while(curr!=null && curr.next!=null){ 
+            if(curr.val==curr.next.val){
+                curr.next=curr.next.next;
+            }else{
+                curr=curr.next;
+            }
+        }
+        return head;
+        
+    }
+}
