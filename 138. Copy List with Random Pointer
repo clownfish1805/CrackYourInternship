@@ -1,0 +1,27 @@
+class Solution {
+    public Node copyRandomList(Node head) {
+        // create hashmap for storing the deep copy. then again traverse it to add the random and next pointer
+        //TC -> O(N)
+        
+        HashMap<Node,Node> copyNode = new HashMap<>();
+        copyNode.put(null, null);
+
+        Node curr=head;
+
+        while(curr!=null){
+            Node nn=new Node(curr.val);
+            copyNode.put(curr,nn);
+            curr=curr.next;
+        }
+
+        curr=head;
+
+        while(curr!=null){
+            Node copy=copyNode.get(curr);
+            copy.next=copyNode.get(curr.next);
+            copy.random=copyNode.get(curr.random);
+            curr=curr.next;
+        }
+        return copyNode.get(head);
+    }
+}
