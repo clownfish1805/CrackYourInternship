@@ -1,0 +1,33 @@
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        // Create a dummy node to handle edge cases
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        
+        // Initialize two pointers
+        ListNode prev = dummy;
+        ListNode current = head;
+
+        while (current != null) {
+            // Check for duplicates
+            boolean hasDuplicates = false;
+            while (current.next != null && current.val == current.next.val) {
+                current = current.next;
+                hasDuplicates = true;
+            }
+            
+            if (hasDuplicates) {
+                // Skip all duplicates
+                prev.next = current.next;
+            } else {
+                // Move prev pointer if no duplicates
+                prev = prev.next;
+            }
+            
+            // Move current pointer
+            current = current.next;
+        }
+        
+        return dummy.next;
+    }
+}
