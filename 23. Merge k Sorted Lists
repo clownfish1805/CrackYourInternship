@@ -1,0 +1,26 @@
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+       /* List<Integer> res=new ArrayList<>();
+
+        for(ListNode list:lists){
+            while(list!=null){   //null pointer exception error occurs
+                res.add(list.val);
+                list=list.next;
+            }
+        }
+
+        Collections.sort(res);
+
+        // Create a new sorted linked list
+        ListNode dummy = new ListNode(0);
+        ListNode current = dummy;
+
+        for (int val : res) {
+            current.next = new ListNode(val);
+            current = current.next;
+        }
+        
+        return dummy.next;*/
+
+    }
+}
