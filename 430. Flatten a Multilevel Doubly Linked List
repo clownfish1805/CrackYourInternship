@@ -1,0 +1,38 @@
+class Solution {
+    public Node flatten(Node head) {
+        if (head == null) return head;
+        
+        Node curr = head;
+        
+        while (curr != null) {
+            if (curr.child != null) {
+                Node child = curr.child;
+
+                // Find the tail of the child list
+                Node childTail = child;
+                
+                while (childTail.next != null) {
+                    childTail = childTail.next;
+                }
+                
+                // Connect the tail of the child list to the next node
+                if (curr.next != null) {
+                    curr.next.prev = childTail;
+                    childTail.next = curr.next;
+                }
+                
+                // Connect the current node to the head of the child list
+                curr.next = child;
+                child.prev = curr;
+                
+                // Set the child pointer to null
+                curr.child = null;
+            }
+            
+            // Move to the next node
+            curr = curr.next;
+        }
+        
+        return head;
+    }
+}
