@@ -1,0 +1,29 @@
+class Solution {
+    public int maxPoints(int[][] points) {
+        if (points.length <= 2) {
+            return points.length;
+        }
+        
+        int maxPoints = 0;
+        
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                int count = 2; // start with the two points i and j
+                
+                for (int k = 0; k < points.length; k++) {
+                    if (k != i && k != j && isCollinear(points[i], points[j], points[k])) {
+                        count++;
+                    }
+                }
+                
+                maxPoints = Math.max(maxPoints, count);
+            }
+        }
+        
+        return maxPoints;
+    }
+    
+    private boolean isCollinear(int[] p1, int[] p2, int[] p3) {
+        return (p2[1] - p1[1]) * (p3[0] - p1[0]) == (p3[1] - p1[1]) * (p2[0] - p1[0]);
+    }
+}
