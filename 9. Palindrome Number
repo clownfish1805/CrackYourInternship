@@ -1,0 +1,18 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        // Edge case: Negative numbers are not palindromes
+        if (x < 0) {
+          return false;
+        }
+
+        int rev=0;
+        int orig=x;  // if its not initialized , then the value of x is changed -> o/p will be wrong
+        while(x!=0){
+            int dig=x%10;
+            rev=rev*10+dig;
+            x/=10;
+        }
+        
+        return rev==orig;
+    }
+}
