@@ -1,0 +1,53 @@
+class Solution
+{
+    public static String smallestWindow(String str, String pattern) {
+        int lenStr = str.length();
+        int lenPattern = pattern.length();
+        String smallestSubstring = "";
+
+        int minLength = Integer.MAX_VALUE;
+
+        // Generate all substrings of the given string
+        for (int i = 0; i < lenStr; i++) {
+            for (int j = i; j < lenStr; j++) {
+                String substr = str.substring(i, j + 1);
+
+                // Check if the substring contains all
+                // characters of the pattern
+                if (containsAllCharactersUsingMap(substr, pattern)) {
+                    int currentLength = substr.length();
+
+                    // Update the smallestSubstring if the
+                    // current substring is smaller
+                    if (currentLength < minLength) {
+                        minLength = currentLength;
+                        smallestSubstring = substr;
+                    }
+                }
+            }
+        }
+
+        return smallestSubstring.isEmpty() ? "-1" : smallestSubstring;
+    }
+
+    static boolean containsAllCharactersUsingMap(String substr, String pattern) {
+        Map<Character, Integer> patternCount = new HashMap<>();
+
+        // Count the frequency of each character in the pattern
+        for (char ch : pattern.toCharArray())
+            patternCount.put(ch, patternCount.getOrDefault(ch, 0) + 1);
+
+        // For each character in the substring, decrement its count
+        for (char ch : substr.toCharArray()) {
+            if (patternCount.containsKey(ch)) {
+                patternCount.put(ch, patternCount.get(ch) - 1);
+                if (patternCount.get(ch) == 0)
+                    patternCount.remove(ch);
+            }
+        }
+
+        // If the map is empty, the substring contains all characters of the pattern
+        return patternCount.isEmpty();
+    }
+
+}
