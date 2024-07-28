@@ -1,0 +1,21 @@
+class Solution {
+    int max=0;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        func(root);
+        return max;
+    }
+
+    public int func(TreeNode root){   //similar to finding height of tree
+        if(root==null){
+            return 0;
+        }
+
+        int lh=func(root.left);
+        int rh=func(root.right);
+
+        max=Math.max(max,lh+rh);   //stores the total height pf tree by comparing
+
+        return 1+Math.max(lh,rh);
+    }
+}
